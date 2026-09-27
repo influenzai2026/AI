@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram OAuth Redirect</title>
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <article class="page-card">
+        <h1>Instagram OAuth Redirect</h1>
+        <p>
+          This page is the callback endpoint for Instagram OAuth. It is intentionally lightweight and prepared for backend processing.
+        </p>
+        <div class="status-box">
+          <strong>Status:</strong> Ready for OAuth callback handling.
+        </div>
+        <script>
+          const params = new URLSearchParams(window.location.search);
+          const code = params.get('code');
+          const state = params.get('state');
+
+          console.log('Instagram OAuth callback received:', { code, state });
+          document.addEventListener('DOMContentLoaded', () => {
+            const message = document.createElement('p');
+            message.textContent = code
+              ? 'Authorization code received. Forward this to your backend for token exchange.'
+              : 'No authorization code found in the URL yet.';
+            document.querySelector('.page-card').appendChild(message);
+          });
+        </script>
+      </article>
+    </main>
+  </body>
+</html>
